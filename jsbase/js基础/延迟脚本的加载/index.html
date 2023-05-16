@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/defer.js" defer>
+        // 添加defer属性，等文档渲染完之后再去加载脚本，多个带有defer属性会根据他们出现顺序去执行
+    </script>
+    <script src="./js/defer1.js"  defer>
+
+    </script>
+</head>
+<body>
+    <div id="main-box">加载脚本</div>
+    <div id="async-box">加载脚本1</div>
+    <div id="create-box">加载脚本2</div>
+</body>
+<script src="./js/asysc.js" async>
+    // 添加async属性，告诉浏览器可以异步执行脚本，不会阻塞HTML解析，多个async的执行顺序是不确定的，他们是并行加载
+</script>
+<script src="./js/asysc1.js" async>
+
+</script>
+<script>
+    // 通过创建script标签，去动态的加到body
+    window.onload = function () {
+       
+        let body = document.body;
+        let script = document.createElement('script');
+        script.src = './js/create.js';
+        body.append(script);
+    }
+</script>
+</html>
