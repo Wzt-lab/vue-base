@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="./css/index.css">
+    </link>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="drag-box">
+        <h1>课程表</h1>
+        <div class="main-box">
+            <div class="main-left">
+                <ul data-drop="move">
+                    <li data-effect="copy" draggable="true">语文</li>
+                    <li data-effect="copy" draggable="true">数学</li>
+                    <li data-effect="copy" draggable="true">英语</li>
+                    <li data-effect="copy" draggable="true">音乐</li>
+                    <li data-effect="copy" draggable="true">政治</li>
+                    <li data-effect="copy" draggable="true">历史</li>
+                    <li data-effect="copy" draggable="true">体育</li>
+                </ul>
+            </div>
+            <div class="main-right">
+                <table border="1" class="timetable">
+                    <tr>
+                        <th style="visibility: hidden;"></th>
+                        <th>星期一</th>
+                        <th>星期二</th>
+                        <th>星期三</th>
+                        <th>星期四</th>
+                        <th>星期五</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" class="time-td">上午</td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                    </tr>
+                    <tr>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                    </tr>
+                    <tr>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                    </tr>
+                    <tr>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4" class="time-td">下午</td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                    </tr>
+                    <tr>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                    </tr>
+                    <tr>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                    </tr>
+                    <tr>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                        <td data-drop="copy"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./js/index.js">
+
+</script>
+
+</html>

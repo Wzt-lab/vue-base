@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#drag-box{
+    padding-top: 20px;
+}
+#drag-box h1{
+    text-align: center;
+}
+.main-box {
+    display: flex;
+}
+.main-box .main-left ul{
+    height: 100%;
+    background-color: #efefef;
+    padding: 10px;
+}
+#drag-box li{
+    list-style: none;
+    line-height: 30px;
+    background-color: aqua;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 60px;
+}
+.main-right{
+    margin-left: 50px;
+}
+.timetable{
+    background-color: #fcf8f8;
+}
+.timetable tr th{
+    background-color: rgb(184, 178, 178);
+    padding: 10px;
+}
+.timetable tr td{
+    width: 60px;
+    height: 30px;
+    border: 1px solid rgb(184, 178, 178);
+    padding: 5px 10px ;
+}
+.main-right .timetable tr .time-td{
+    text-align: center;
+    background-color: rgb(184, 178, 178);
+    width: 30px;
+}
+#drag-box .set-bg-color{
+    background-color: #424040;
+}
