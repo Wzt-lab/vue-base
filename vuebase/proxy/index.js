@@ -8,7 +8,8 @@ let obj = {
     ccc: '1111111',
     ddd: '2222222',
     inputValue: '',
-    foo: 1
+    foo: 1,
+    num: 2
 };
 let activeEffect;
 // 事件栈，嵌套调用
@@ -24,7 +25,6 @@ function flushJob() {
     if (isFlushing) return;
     isFlushing = true;
     p.then(() => {
-        console.log('%c [  ]-28', 'font-size:13px; background:pink; color:#bf2c9f;', jobQueue)
         jobQueue.forEach(job => job())
     }).finally(() => {
         isFlushing = false
@@ -43,13 +43,18 @@ function effect(fn, options = {}) {
         activeEffect = effectFn;
         effectStack.push(activeEffect);
         cleanup(effectFn);
+        const res = fn();
         fn();
         effectStack.pop();
         activeEffect = effectStack[effectStack.length - 1] || '';
+        return res; 
     };
     effectFn.options = options
     effectFn.deps = [];
-    effectFn();
+    if(!options.lazy) {
+        effectFn();
+    };
+    return effectFn;
 }
 // 代理原始数据
 let data = new Proxy(obj, {
@@ -130,16 +135,22 @@ function trigger(target, key) {
 
 // 打印最终的值，多次调用只会刷新一次,相当于vue里多次改变了值，只会刷新一次dom元素并且值是最新的
 
-const fn = () => { console.log(data.foo)};
-effect(fn , {
-    scheduler() {
-        jobQueue.add(fn);
-        flushJob();
-    }
-});
-data.foo ++ 
-data.foo ++;
-data.foo ++;
+/**************************************************************/ 
+// 多次计算只打印一次得到最终的值
+// const fn = () => { console.log(data.foo)};
+// const effecnFn = effect(fn , {
+//     scheduler() {
+//         jobQueue.add(fn);
+//         flushJob();
+//     },
+//     lazy: true
+// });
+// const value = effecnFn();
+// data.foo ++;
+// data.foo ++;
+
+
+/**************************************************************/ 
 // let input = document.getElementsByClassName('input')[0];
 // input.addEventListener('change', function () {
 //     data.inputValue = this.value;
@@ -169,3 +180,29 @@ data.foo ++;
 //     // data.ok = false;
 //     data.ccc = '33333';
 // }, 3000);
+
+
+/**************************************************************/ 
+function computed(getter) {
+    let value,
+        dirty = true;
+    const effectFn = effect(getter, {lazy: true, scheduler () {
+        console.log('%c [  ]-191', 'font-size:13px; background:pink; color:#bf2c9f;', 'dirty')
+        dirty = true;
+    }});
+    const obj = {
+        get value() {
+            if(dirty) {
+                value = effectFn()
+                dirty = false
+            }
+            return value
+        }
+    }
+    return obj;
+}
+
+const sumRes = computed(() => obj.foo + obj.num)
+console.log('%c [ sumRes ]-197', 'font-size:13px; background:pink; color:#bf2c9f;', sumRes.value)
+obj.foo ++;
+console.log('%c [ sumRes ]-197', 'font-size:13px; background:pink; color:#bf2c9f;', sumRes.value)
